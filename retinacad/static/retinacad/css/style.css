@@ -1,0 +1,72 @@
+.column {
+    float: left;
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+th, td {
+    text-align: left;
+    padding: 4px 8px;
+}
+
+td:nth-child(1) {
+    font: bold 16px Arial;
+    background-color: #4CAF50;
+    color: white;
+    border-bottom: 2px solid #ffffff;
+}
+
+h5 {
+    font: bold 16px Arial;
+    display: inline;
+    background-color: #4CAF50;
+    color: white;
+    padding: 4px 8px;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 25px;
+    font: bold 16px Arial;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+  
+.button:hover {
+    background-color: #3e8e41
+}
+  
+.button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+    .column {
+        width: 100%;
+    }
+}

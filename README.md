@@ -1,2 +1,2 @@
 # retcad
-Retinal Fundus Photography Analyzer
+Retinal Fundus Photography Computer Aided Diagnosis (CAD)

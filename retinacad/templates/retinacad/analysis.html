@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'retinacad/css/style.css' %}">
+</head>
+<title>Fundus Photography Analysis</title>
+<article>
+    <div>
+        <H1>Fundus Analysis</H1>
+    </div>
+    <div>
+        <table> 
+            <tr>
+                <td>
+                    Patient Name:
+                </td>
+                <td> {{ object.name }}</td>
+            </tr>
+            <tr>
+                <td>
+                   Image Taken At:
+                </td>
+                <td> {{ object.taken_at }}</td>
+            </tr>
+            <tr>
+                <td>
+                    Uploaded:
+                </td>
+                <td> {{ object.uploaded_at }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <div class="column" style="text-align: center">
+            <h4>Left Eye</h4>
+            <a href="{{ object.lefteye.url }}">
+                <img src="{{ object.lefteye.url }}" alt="Left Retina" width="250">
+            </a>
+            <p>{{ object.lefteye.name }}</p>
+        </div>
+        <div class="column" style="text-align: center">
+            <h4>Right Eye</h4>
+            <a href="{{ object.righteye.url }}">
+                <img src="{{ object.righteye.url }}" alt="Right Retina" width="250">
+            </a>
+            <p>{{ object.lefteye.name }}</p>
+        </div>
+    </div>
+    <div style="text-align: center">
+        <a href="{% url 'retinacad:fundus-list'%}" class="button">Back to List</a>
+    </div>
+</article>

@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'retinacad/css/style.css' %}">
+</head>
+<title>Fundus Photography CAD</title>
+<article>
+    <H1>CAD for Retinal Fundus Images</H1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} 
+        
+        {{ form.non_field_errors }} 
+        {{ form.source.errors }} 
+        {{ form.source }}
+
+        <div>
+            <div>
+                <table>
+                    <tr>
+                        <td>{{ form.name.label_tag }}</td>
+                        <td>{{ form.name }} {{ form.name.errors }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.taken_at.label_tag }}</td>
+                        <td>{{ form.taken_at }} {{ form.taken_at.errors }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <img src='' id='leyeimg'>
+                    <br>
+                    <h5>{{ form.lefteye.label_tag }}</h5> 
+                    {{ form.lefteye.errors }} {{ form.lefteye }}
+                </div>
+                <div class="column">
+                    <img src='' id='reyeimg'>
+                    <br>
+                    <h5>{{ form.righteye.label_tag }}</h5> 
+                    {{ form.righteye.errors }} {{ form.righteye }}
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center">
+            <p>
+                <button type="submit" class="button">Submit</button>
+            </p>
+        </div>
+    </form>
+    <script src="{% static 'retinacad/js/retina_upload.js' %}"></script>
+</article>
