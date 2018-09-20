@@ -12,21 +12,15 @@
     <div>
         <table> 
             <tr>
-                <td>
-                    Patient Name:
-                </td>
+                <td>Patient Name:</td>
                 <td> {{ object.name }}</td>
             </tr>
             <tr>
-                <td>
-                   Image Taken At:
-                </td>
+                <td>Image Taken At:</td>
                 <td> {{ object.taken_at }}</td>
             </tr>
             <tr>
-                <td>
-                    Uploaded:
-                </td>
+                <td>Uploaded:</td>
                 <td> {{ object.uploaded_at }}</td>
             </tr>
         </table>
@@ -38,16 +32,82 @@
                 <img src="{{ object.lefteye.url }}" alt="Left Retina" width="250">
             </a>
             <p>{{ object.lefteye.name }}</p>
+            <p>
+                <select onchange="left_heatmap_select(event)">
+                    <option value="0" selected>No NPDR</option>
+                    <option value="1">Mild NPDR</option>
+                    <option value="2">Moderate NPDR</option>
+                    <option value="3">Severe NPDR</option>
+                    <option value="4">PDR</option>
+                </select>
+            </p>
+            <img id = "left-heatmap" src="" alt="Left Heatmap" width="250">
+            <p>
+                <table> 
+                    <tr>
+                        <th>Severity</th>
+                        <th>Probability</th>
+                    </tr>
+                    {% for prob in object.left_prob %}
+                    <tr>
+                        <td>{{ forloop.counter0 }} {# starting index 0 #}</td>
+                        <td>{{ prob|floatformat:3 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </p>
         </div>
         <div class="column" style="text-align: center">
             <h4>Right Eye</h4>
             <a href="{{ object.righteye.url }}">
                 <img src="{{ object.righteye.url }}" alt="Right Retina" width="250">
             </a>
-            <p>{{ object.lefteye.name }}</p>
+            <p>{{ object.righteye.name }}</p>
+            <p>
+                <select onchange="right_heatmap_select(event)">
+                    <option value="0" selected>No NPDR</option>
+                    <option value="1">Mild NPDR</option>
+                    <option value="2">Moderate NPDR</option>
+                    <option value="3">Severe NPDR</option>
+                    <option value="4">PDR</option>
+                </select>
+            </p>
+            <img id = "right-heatmap" src="" alt="Right Heatmap" width="250">
+            <p>
+                <table> 
+                    <tr>
+                        <th>Severity</th>
+                        <th>Probability</th>
+                    </tr>
+                    {% for prob in object.right_prob %}
+                    <tr>
+                        <td>{{ forloop.counter0 }} {# starting index 0 #}</td>
+                        <td>{{ prob|floatformat:3 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </p>
         </div>
     </div>
+
     <div style="text-align: center">
         <a href="{% url 'retinacad:fundus-list'%}" class="button">Back to List</a>
     </div>
+
+    <script>
+        var rr = "{{ object.right_cam }}";
+        var ll = "{{ object.left_cam }}";
+        var lheatmap = document.getElementById("left-heatmap");
+        lheatmap.src = ll + '_0.jpeg';
+        var rheatmap = document.getElementById("right-heatmap");
+        rheatmap.src = rr + '_0.jpeg';
+
+        function left_heatmap_select(e) {
+            lheatmap.src = ll + '_' + e.target.value + '.jpeg';
+        }
+
+        function right_heatmap_select(e) {
+            rheatmap.src = rr + '_' + e.target.value + '.jpeg';
+        }
+    </script>
 </article>
