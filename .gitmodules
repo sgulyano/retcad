@@ -1,0 +1,3 @@
+[submodule "diabeticretinopathy"]
+	path = diabeticretinopathy
+	url = https://github.com/sgulyano/diabetic-retinopathy.git

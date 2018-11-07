@@ -10,7 +10,7 @@ from django.conf import settings
 from .forms import FundusRetinaForm
 from .models import FundusRetina
 
-from dr_cam_viz import find_pred_one
+from diabeticretinopathy.code.dr_cam_viz import find_pred_one
 
 # Create your views here.
 class FundusRetinaView(FormView):
